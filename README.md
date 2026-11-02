@@ -10,6 +10,7 @@ Video parçalarını kayıpsız düzenle, yalnızca gerekeni dönüştür.<br>
 <p align="center"><a href="#english">English below</a></p>
 
 <p align="center"><img src="assets/screenshots/editor.png" width="900" alt="Remuxa"></p>
+
 ---
 
 ## Türkçe
