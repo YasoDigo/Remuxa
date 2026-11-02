@@ -1,0 +1,51 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "Remuxa",
+  "version": "0.9.0",
+  "identifier": "com.yasodigo.remuxa",
+  "build": {
+    "beforeDevCommand": "npm run dev",
+    "devUrl": "http://localhost:1420",
+    "beforeBuildCommand": "npm run build",
+    "frontendDist": "../build"
+  },
+  "app": {
+    "windows": [
+      {
+        "title": "Remuxa",
+        "width": 1280,
+        "height": 800,
+        "minWidth": 1100,
+        "minHeight": 620,
+        "dragDropEnabled": true
+      }
+    ],
+    "security": {
+      "csp": null
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": [
+      "nsis"
+    ],
+    "icon": [
+      "icons/32x32.png",
+      "icons/64x64.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ],
+    "shortDescription": "Video track editor and converter",
+    "longDescription": "Edit video tracks losslessly (remux) and convert only what is needed, with ffmpeg and MKVToolNix.",
+    "copyright": "Copyright © 2026 YasoDigo · GPL-3.0-or-later",
+    "category": "Video",
+    "windows": {
+      "nsis": {
+        "languages": ["Turkish", "English"],
+        "displayLanguageSelector": true
+      }
+    }
+  }
+}

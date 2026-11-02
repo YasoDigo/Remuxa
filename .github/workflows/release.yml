@@ -1,0 +1,41 @@
+# Yeni sürüm: package.json, src-tauri/tauri.conf.json ve src-tauri/Cargo.toml içindeki
+# sürümü yükselt, commit'le, sonra etiket at:  git tag v0.9.0 && git push --tags
+# Bu iş Windows kurulum dosyasını (NSIS) derler ve taslak bir GitHub Release oluşturur.
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - uses: dtolnay/rust-toolchain@stable
+
+      - uses: swatinem/rust-cache@v2
+        with:
+          workspaces: src-tauri -> target
+
+      - run: npm ci
+
+      - uses: tauri-apps/tauri-action@v0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tagName: ${{ github.ref_name }}
+          releaseName: "Remuxa ${{ github.ref_name }}"
+          releaseBody: "Kurulum: Remuxa_x.y.z_x64-setup.exe dosyasını indirip çalıştır. / Download and run the setup .exe."
+          releaseDraft: true
+          prerelease: false
